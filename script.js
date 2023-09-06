@@ -6,6 +6,8 @@ function getCompChoice() {
 
 var playerChoice = ""
 var compChoice = ""
+var playerScore = 0
+var compScore = 0
 
 function playRound(playerChoice, compChoice) {
     playerChoice = prompt("Pick rock, paper or scissors: ")
@@ -16,25 +18,31 @@ function playRound(playerChoice, compChoice) {
     }
     else if (playerChoice === "rock") {
         if (compChoice === "scissors") {
+            playerScore++
             return "win"
         }
         else if (compChoice === "paper") {
+            compScore++
             return "loss"
         }
     }
     else if (playerChoice === "scissors") {
         if (compChoice === "paper") {
+            playerScore++
             return "win"
         }
         else if (compChoice === "rock") {
+            compScore++
             return "loss"
         }
     }
     else if (playerChoice === "paper") {
         if (compChoice === "rock") {
+            playerScore++
             return "win"
         }
         else if (compChoice === "scissors") {
+            compScore++
             return "loss"
         }
     }
@@ -44,11 +52,23 @@ function playRound(playerChoice, compChoice) {
     }
 }
 
-// console.log(playRound(playerChoice, getCompChoice()))
-
 function game(playRound, n) {
     for (let i = 1; i <= n; i++) {
         console.log(playRound())
+        console.log(playerScore + "-" + compScore)
+    }
+    console.log(getWinner(playerScore, compScore))
+}
+
+function getWinner(playerScore, compScore) {
+    if (playerScore > compScore) {
+        return `Player won with the score ${playerScore + "-" + compScore}`
+    }
+    else if (playerScore === compScore) {
+        return `It's a draw with the score ${playerScore + "-" + compScore}`
+    }
+    else {
+        return `Computer won with the score ${playerScore + "-" + compScore}`
     }
 }
 
