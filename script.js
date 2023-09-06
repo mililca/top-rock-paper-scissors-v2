@@ -45,3 +45,11 @@ function playRound(playerChoice, compChoice) {
 }
 
 // console.log(playRound(playerChoice, getCompChoice()))
+
+function game(playRound, n) {
+    for (let i = 1; i <= n; i++) {
+        console.log(playRound())
+    }
+}
+
+game(playRound, 5)
