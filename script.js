@@ -95,15 +95,3 @@ function playRound(playerChoice) {
     };
     return result
 }
-
-function getWinner(playerScore, compScore) {
-    if (playerScore > compScore) {
-        return `Player won with the score ${playerScore + "-" + compScore}`
-    }
-    else if (playerScore === compScore) {
-        return `It's a draw with the score ${playerScore + "-" + compScore}`
-    }
-    else {
-        return `Computer won with the score ${playerScore + "-" + compScore}`
-    }
-}
