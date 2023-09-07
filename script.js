@@ -46,12 +46,6 @@ function getCompChoice() {
     return options[compChoice]
 }
 
-function checkGameScore(playerScore, compScore){
-    if (playerScore == 5 || compScore == 5){
-        result = "Game over, refresh to play again"
-    }
-}
-
 function playRound(playerChoice) {
     let compChoice = getCompChoice()
     let result = ""
