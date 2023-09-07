@@ -1,63 +1,99 @@
+var playerScore = 0
+var compScore = 0
+
+const result = document.querySelector('#result')
+const score = document.querySelector('#score')
+
+const btnRock = document.querySelector('#rock')
+btnRock.addEventListener('click', function(){
+    result.textContent = playRound("rock")
+    score.textContent = `${playerScore} - ${compScore}`
+    if (playerScore == 5 || compScore == 5){
+        score.textContent = "Game over, refresh to play again"
+        btnRock.disabled = true;
+        btnPaper.disabled = true;
+        btnScissors.disabled = true;
+    }
+})
+
+const btnPaper = document.querySelector('#paper')
+btnPaper.addEventListener('click', function(){
+    result.textContent = playRound("paper")
+    score.textContent = `${playerScore} - ${compScore}`
+    if (playerScore == 5 || compScore == 5){
+        score.textContent = "Game over, refresh to play again"
+        btnRock.disabled = true;
+        btnPaper.disabled = true;
+        btnScissors.disabled = true;
+    }
+})
+
+const btnScissors = document.querySelector('#scissors')
+btnScissors.addEventListener('click', function(){
+    result.textContent = playRound("scissors")
+    score.textContent = `${playerScore} - ${compScore}`
+    if (playerScore == 5 || compScore == 5){
+        score.textContent = "Game over, refresh to play again"
+        btnRock.disabled = true;
+        btnPaper.disabled = true;
+        btnScissors.disabled = true;
+    }
+})
+
 function getCompChoice() {
     const options = ["rock", "paper", "scissors"]
     const compChoice = Math.floor(Math.random() * options.length)
     return options[compChoice]
 }
 
-var playerChoice = ""
-var compChoice = ""
-var playerScore = 0
-var compScore = 0
+function checkGameScore(playerScore, compScore){
+    if (playerScore == 5 || compScore == 5){
+        result = "Game over, refresh to play again"
+    }
+}
 
-function playRound(playerChoice, compChoice) {
-    playerChoice = prompt("Pick rock, paper or scissors: ")
-    playerChoice = playerChoice.toLowerCase()
-    compChoice = getCompChoice()
+function playRound(playerChoice) {
+    let compChoice = getCompChoice()
+    let result = ""
+
     if (playerChoice === compChoice) {
-        return "draw"
+        result = "It's a draw"
     }
     else if (playerChoice === "rock") {
         if (compChoice === "scissors") {
             playerScore++
-            return "win"
+            result = "W"
         }
         else if (compChoice === "paper") {
             compScore++
-            return "loss"
+            result = "L"
         }
     }
     else if (playerChoice === "scissors") {
         if (compChoice === "paper") {
             playerScore++
-            return "win"
+            result = "W"
         }
         else if (compChoice === "rock") {
             compScore++
-            return "loss"
+            result = "L"
         }
     }
     else if (playerChoice === "paper") {
         if (compChoice === "rock") {
             playerScore++
-            return "win"
+            result = "W"
         }
         else if (compChoice === "scissors") {
             compScore++
-            return "loss"
+            result = "L"
         }
     }
     else if (playerChoice !== "paper" || playerChoice !== "rock" || 
     playerChoice !== "scissors") {
         return "Pick form paper, rock or scissor next time!"
-    }
-}
-
-function game(playRound, n) {
-    for (let i = 1; i <= n; i++) {
-        console.log(playRound())
-        console.log(playerScore + "-" + compScore)
-    }
-    console.log(getWinner(playerScore, compScore))
+    };
+    return result
 }
 
 function getWinner(playerScore, compScore) {
@@ -71,5 +107,3 @@ function getWinner(playerScore, compScore) {
         return `Computer won with the score ${playerScore + "-" + compScore}`
     }
 }
-
-game(playRound, 5)
